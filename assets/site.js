@@ -5,7 +5,7 @@ const SYSTEMS = [
     images:[['strat-1.jpg','Overview: what was suggested, what shipped and which client needs attention'],['strat-2.jpg','Client cards: execution rate and every idea\'s status and days overdue'],['strat-3.jpg','Calls: previous and next strategy call per client, from the GoHighLevel calendar'],['strat-4.jpg','Checkpoints: 14-day, 30-day and renewal checks for each project phase'],['strat-5.jpg','Allocation: every active project grouped by strategy team member'],['strat-6.jpg','Bottleneck: stalled ideas and the clients carrying the most overdue work'],['strat-8.jpg','Performance: product owners ranked by delivery for the month'],['strat-9.jpg','Performance table: suggested, excluded, eligible and executed per PO']],
     problem:'The strategy team suggested ideas on every client call, but nobody could see whether product owners executed them before the next call, or which clients were falling behind.',
     how:['Finds every ⭐ idea on each client\'s Notion content board, using the board IDs already stored in the Project Tracker.','Starts a 7-day check-by clock per idea. Published counts as done; On Hold and Do Not Progress are left out of the score.','Calls tab reads the strategy-call calendar from GoHighLevel and scores each call cycle; moving a booking updates it automatically.','Checkpoints, Allocation, Bottleneck and Performance tabs give leadership the full picture, filterable by client and month.'],
-    impact:[['241','ideas tracked'],['42','active projects allocated'],['0','manual entry']],
+    impact:[['241','ideas tracked'],['34 / 42','projects allocated to strategists'],['0','manual entry']],
     stack:['Notion API','GoHighLevel API','JavaScript','Vercel serverless','Claude + MCP'] },
   { id:'report', kind:'Web tool · client reporting', title:'Monthly Report Builder',
     summary:'Turns a 2-hour manual client report into four quick steps and a ready-to-send PDF.',
@@ -80,7 +80,7 @@ const PROJECTS = [
     summary:'How a slogan became a demand engine, and what that means for planning and supply.', cover:'nike',
     pdf:['nike-case-study.pdf','Case study deck'],
     problem:'Look past the branding to see how marketing decisions at the top shape demand planning, procurement and supply chain further down.',
-    how:['Emotion-led storytelling, athlete endorsements and one consistent message on every channel.','How identity-based marketing builds repeat demand and pricing power.','How stable demand supports inventory planning and forecasting.','Nike\'s revenue grew from $9.2B in 1988 to over $39B by 2019.'],
+    how:['Emotion-led storytelling, athlete endorsements and one consistent message on every channel.','How identity-based marketing builds repeat demand and pricing power.','How stable demand supports inventory planning and forecasting.','Nike\'s sales grew from $877M in 1988 to $9.2B by 1998, and to over $39B by 2019.'],
     impact:[['30+ years','one campaign'],['100+','countries reached'],['$39B+','revenue by 2019']],
     stack:['Brand strategy','Demand generation','Supply chain'] }
 ];

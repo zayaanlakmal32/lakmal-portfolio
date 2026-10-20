@@ -5,6 +5,8 @@ import json, subprocess, html, os
 data = json.loads(subprocess.check_output(['node', '-e',
   "global.window={};require('./assets/data.js');console.log(JSON.stringify({s:window.SYSTEMS,p:window.PROJECTS}))"]))
 SITE = 'https://lakmal-portfolio.vercel.app'
+import time
+V = time.strftime('%Y%m%d%H%M')
 e = html.escape
 # reuse the icon sprite from the homepage so logos and icons match
 idx = open('index.html').read()
@@ -43,7 +45,7 @@ for i, (p, is_sys) in enumerate(items):
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="{SITE}/projects/{p['id']}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/site.css?v={V}">
 <script>document.documentElement.classList.replace("no-js","js")</script>
 </head>
 <body class="pg">

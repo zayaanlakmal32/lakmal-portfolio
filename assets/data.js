@@ -89,18 +89,15 @@ window.PROJECTS = [
 
 window.FOUNDATION = [
   { id:'tracker', kind:'Source of truth', title:'Project Tracker',
-    summary:'One row per client. Every dashboard, Slack canvas and report reads from it.',
-    facts:[['73','properties per client'],['34','coded blockers'],['3','client views']],
-    viz:'blockers',
-    points:['Monthly goals split flat or rolled over, so any shortfall carries into the next month.','Holds the IDs that link each client to its board, Slack channel and canvas.'] },
+    summary:'One row per client that everything else reads from.',
+    facts:[['73','properties'],['34','coded blockers'],['3','client views']],
+    viz:'tracker' },
   { id:'archive', kind:'History', title:'Phase Performance Archive',
-    summary:'Keeps every finished 90-day phase, so the tracker can reset without losing results.',
-    facts:[['3','months per phase'],['1','row per client per phase'],['0','results lost on reset']],
-    viz:'phases',
-    points:['Each row keeps goals, actuals, progress % and that phase\'s strategy deck.'] },
+    summary:'Every finished 90-day phase, kept forever.',
+    facts:[['3','months a phase'],['1','row per phase'],['0','results lost']],
+    viz:'phases' },
   { id:'audits', kind:'Weekly audits', title:'Weekly Audit Records',
-    summary:'A weekly health check of every active client that feeds the Flag Trends dashboard.',
-    facts:[['~35','clients a week'],['6','posts reviewed each'],['9','content formats']],
-    viz:'audit',
-    points:['Execution and creative flags, each rated healthy, needs attention or critical.'] }
+    summary:'A weekly health check of every active client.',
+    facts:[['~35','clients a week'],['6','posts each'],['2','flag types']],
+    viz:'audit' }
 ];

@@ -88,17 +88,19 @@ window.PROJECTS = [
 
 
 window.FOUNDATION = [
-  { id:'tracker', kind:'Notion database · source of truth', title:'Project Tracker',
-    summary:'One row per client that every dashboard, Slack canvas and report reads from.',
-    facts:[['73','properties per client'],['34','coded bottleneck reasons'],['3','views: programme, done-for-you, manual']],
-    points:['90-day goal split into monthly M1, M2 and M3 targets, with a flat-split or rollover model that carries any shortfall into the next month.','Progress %, status and end-date formulas, plus per-platform goals and actuals for Instagram, Facebook and TikTok.','Phase stage (Phase 01 to 04, on hold, offboarded) and an 8-step delivery pipeline from onboarding call to ads.','A coded "specific issue" list in 6 groups (client filming, strategy, feedback, internal delivery, client behaviour, funnels and ads), so blockers can be counted, not just described.','The IDs that connect everything: content board data source, Slack channel and Slack canvas.'] },
-  { id:'archive', kind:'Notion database · history', title:'Phase Performance Archive',
-    summary:'Keeps every finished 90-day phase, so the live tracker can reset without losing results.',
-    facts:[['1 row','per client, per phase'],['M1–M3','goals vs actuals kept'],['Linked','to the client and strategy deck']],
-    points:['When a phase ends, its goals, actuals, total achieved and progress % are archived as their own row.','The Project Tracker then resets for the next phase; the archive keeps the full history per client.','Each row carries that phase\'s strategy deck, which the Marketing Ops dashboard uses for client briefs.'] },
-  { id:'audits', kind:'Notion database · weekly audits', title:'Weekly Audit Records',
-    summary:'A weekly health check of every active client, with flags that feed the Flag Trends dashboard.',
-    facts:[['~35','clients audited a week'],['6','posts reviewed per client'],['2','flag types with 3 priority levels']],
-    points:['Each week, every active client gets a row: top 3 and bottom 3 posts with title, link, views and one of 9 content formats.','Execution and creative flags with a priority (healthy, needs attention, critical) and a written reason.','Formulas work out average and best post views and the flag type; the PO and client stage roll up from the Project Tracker.','Ready-made views for this week\'s creative flags, execution flags and green-flag clients, plus week-on-week charts.'] }
+  { id:'tracker', kind:'Source of truth', title:'Project Tracker',
+    summary:'One row per client. Every dashboard, Slack canvas and report reads from it.',
+    facts:[['73','properties per client'],['34','coded blockers'],['3','client views']],
+    viz:'blockers',
+    points:['Monthly goals split flat or rolled over, so any shortfall carries into the next month.','Holds the IDs that link each client to its board, Slack channel and canvas.'] },
+  { id:'archive', kind:'History', title:'Phase Performance Archive',
+    summary:'Keeps every finished 90-day phase, so the tracker can reset without losing results.',
+    facts:[['3','months per phase'],['1','row per client per phase'],['0','results lost on reset']],
+    viz:'phases',
+    points:['Each row keeps goals, actuals, progress % and that phase\'s strategy deck.'] },
+  { id:'audits', kind:'Weekly audits', title:'Weekly Audit Records',
+    summary:'A weekly health check of every active client that feeds the Flag Trends dashboard.',
+    facts:[['~35','clients a week'],['6','posts reviewed each'],['9','content formats']],
+    viz:'audit',
+    points:['Execution and creative flags, each rated healthy, needs attention or critical.'] }
 ];
-

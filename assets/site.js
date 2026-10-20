@@ -18,10 +18,19 @@ document.getElementById('projectGrid').classList.add('stagger');
 document.getElementById('systemGrid').innerHTML = window.SYSTEMS.map(p => card(p, true)).join('');
 document.getElementById('projectGrid').innerHTML = window.PROJECTS.map(p => card(p, false)).join('');
 const fg = document.getElementById('foundationGrid');
+const countAttr = v => { const m = String(v).match(/^(~?)(\d+)(.*)$/); return m ? `data-count="${m[2]}" data-prefix="${m[1]}" data-suffix="${esc(m[3])}"` : ''; };
+const VIZ = {
+  // real counts from the tracker's "Specific Issue" options, grouped by category
+  blockers: () => { const g = [['Internal delivery',9],['Strategy & content',7],['Funnels & ads',7],['Client feedback',4],['Client behaviour',4],['Client filming',3]];
+    return `<figure class="viz"><figcaption>34 coded blockers, by group</figcaption><div class="hbars">${g.map(([n,v]) => `<div class="hb"><span>${n}</span><i style="--w:${v/9*100}%"></i><b>${v}</b></div>`).join('')}</div></figure>`; },
+  phases: () => `<figure class="viz"><figcaption>Each phase is archived, then the tracker resets</figcaption><div class="phases">${['Phase 01','Phase 02','Phase 03'].map((p,i) => `<div class="ph" style="--d:${i*.25}s"><span>${p}</span><div class="ms"><i>M1</i><i>M2</i><i>M3</i></div><em>archived ✓</em></div>`).join('<div class="ph-arrow" aria-hidden="true">→</div>')}</div></figure>`,
+  audit: () => `<figure class="viz"><figcaption>Every client, every week · example</figcaption><div class="posts">${[92,74,60,22,16,10].map((h,i) => `<i class="${i<3?'top':'bot'}" style="--h:${h}%;--d:${i*.08}s"></i>`).join('')}</div><div class="posts-l"><span>Top 3 posts</span><span>Bottom 3 posts</span></div><div class="flags"><div><b>Execution</b><span class="p g">Healthy</span><span class="p a">Attention</span><span class="p r">Critical</span></div><div><b>Creative</b><span class="p g">Healthy</span><span class="p a">Attention</span><span class="p r">Critical</span></div></div></figure>`
+};
 if (fg) fg.innerHTML = window.FOUNDATION.map(f => `<article class="db-card">
   <div class="db-top"><svg aria-hidden="true"><use href="#b-notion"/></svg><p class="kind">${esc(f.kind)}</p></div>
   <h3>${esc(f.title)}</h3><p class="muted">${esc(f.summary)}</p>
-  <div class="db-facts">${f.facts.map(([a,b]) => `<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('')}</div>
+  <div class="db-facts">${f.facts.map(([a,b]) => `<div><b ${countAttr(a)}>${esc(a)}</b><span>${esc(b)}</span></div>`).join('')}</div>
+  ${VIZ[f.viz] ? VIZ[f.viz]() : ''}
   <ul>${f.points.map(x => `<li>${esc(x)}</li>`).join('')}</ul></article>`).join('');
 
 const ALL = Object.fromEntries([...window.SYSTEMS, ...window.PROJECTS].map(p => [p.id, p]));
@@ -132,8 +141,8 @@ document.querySelectorAll('canvas.net-alt').forEach(c => network(c, { density:.6
 
 // 2. Count-up numbers when they scroll into view
 function countUp(el){
-  const end = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), suf = el.dataset.suffix || '';
-  const fmt = v => (dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-US')) + suf;
+  const end = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), suf = el.dataset.suffix || '', pre = el.dataset.prefix || '';
+  const fmt = v => pre + (dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-US')) + suf;
   if (reduce){ el.textContent = fmt(end); return; }
   const dur = 1600, t0 = performance.now();
   (function tick(t){ const k = Math.min(1,(t-t0)/dur), e = 1 - Math.pow(1-k, 4); el.textContent = fmt(end*e); if (k < 1) requestAnimationFrame(tick); })(t0);

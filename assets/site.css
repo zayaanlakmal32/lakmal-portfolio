@@ -414,3 +414,36 @@ section[id],header[id]{scroll-margin-top:96px}
 .pg-next span{display:block;font-family:var(--f-mono);font-size:12px;color:var(--text-muted)}
 .pg-next b{display:block;font-family:var(--f-display);font-stretch:110%;font-size:19px;margin-top:4px}
 footer a{color:inherit}
+
+/* ---------- foundation charts ---------- */
+.db-card .muted{font-size:15.5px;line-height:1.5}
+.db-facts b{font-size:30px}
+.viz{margin:0;background:var(--paper);border:1px solid var(--paper-line);border-radius:14px;padding:14px 16px 16px}
+.viz figcaption{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px}
+.hbars{display:flex;flex-direction:column;gap:7px}
+.hb{display:grid;grid-template-columns:118px 1fr 22px;align-items:center;gap:8px;font-size:12.5px}
+.hb span{color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb i{height:10px;border-radius:6px;background:linear-gradient(90deg,#13774A,#2FD27A);width:0;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.hb b{font-family:var(--f-mono);font-size:12px;text-align:right;font-variant-numeric:tabular-nums}
+.phases{display:flex;align-items:stretch;gap:6px}
+.ph{flex:1;background:var(--white);border:1px solid var(--paper-line);border-radius:10px;padding:9px 8px;display:flex;flex-direction:column;gap:7px;min-width:0;opacity:.35;transform:translateY(8px);transition:opacity .5s ease var(--d), transform .5s ease var(--d)}
+.ph span{font-family:var(--f-mono);font-size:10.5px;font-weight:600;color:var(--text)}
+.ph .ms{display:flex;gap:3px}
+.ph .ms i{flex:1;font-style:normal;font-family:var(--f-mono);font-size:9.5px;text-align:center;padding:5px 0;border-radius:5px;background:var(--mint);color:var(--green-deep)}
+.ph em{font-style:normal;font-size:11px;font-weight:700;color:var(--green)}
+.ph-arrow{align-self:center;color:var(--green);font-weight:700}
+.posts{display:flex;align-items:flex-end;gap:8px;height:84px;padding:0 4px;border-bottom:1px solid var(--paper-line)}
+.posts i{flex:1;border-radius:6px 6px 0 0;height:0;transition:height .9s cubic-bezier(.2,.7,.2,1) var(--d)}
+.posts i.top{background:linear-gradient(180deg,#2FD27A,#13774A)}
+.posts i.bot{background:#C9D2C9}
+.posts-l{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:10.5px;color:var(--text-muted);margin:6px 4px 12px}
+.flags{display:flex;flex-direction:column;gap:6px}
+.flags div{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.flags b{font-size:12.5px;width:70px}
+.flags .p{font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px}
+.p.g{background:#E1F2E8;color:#0B5A32}.p.a{background:#FDF0D5;color:#8A5A00}.p.r{background:#FBE3E1;color:#A3271E}
+/* animate charts once the grid is revealed (and immediately for no-JS) */
+.no-js .hb i,.stagger.in .hb i{width:var(--w)}
+.no-js .posts i,.stagger.in .posts i{height:var(--h)}
+.no-js .ph,.stagger.in .ph{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.hb i{width:var(--w)!important}.posts i{height:var(--h)!important}.ph{opacity:1;transform:none}}

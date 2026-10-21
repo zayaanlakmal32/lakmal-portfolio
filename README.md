@@ -1,13 +1,18 @@
 # Lakmal Sampath — portfolio
 
-Static site (plain HTML, CSS and JS). No build step.
+Static site (HTML, CSS, vanilla JS). No framework, no build server; Vercel serves the files as they are.
 
-- `index.html` – the page
-- `assets/` – styles, script, fonts, images and project covers
-- `docs/` – project reports (peer-assessment pages and student numbers removed)
+## Edit content
+- **All case-study and project text:** `assets/data.js`
+- **Page layout and section copy:** `scripts/index.tpl.html` (then rebuild, below)
+- **Styles:** `assets/site.css` · **Behaviour:** `assets/site.js`
+
+## Rebuild after editing
+```bash
+python3 scripts/build_index.py      # index.html from the template + icon sprite
+python3 scripts/build_pages.py      # /projects/*.html and sitemap.xml from data.js
+python3 scripts/make_flow_covers.py # workflow-diagram covers (needs Playwright)
+```
 
 ## Deploy
-Import this repo into Vercel (Framework preset: **Other**, no build command). Every push to `main` redeploys.
-
-## Custom domain
-Vercel → Project → Settings → Domains → add your domain, then copy the DNS records it shows into your domain provider.
+Push to `main`. Vercel redeploys automatically. Add a custom domain under Vercel → Settings → Domains.

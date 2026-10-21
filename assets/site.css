@@ -429,3 +429,6 @@ dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(3px)}
   .work-grid.all .case:nth-child(-n+4) .cover{aspect-ratio:16/9}
   .work-grid.all .case:nth-child(-n+4) .cover img{object-position:center top}
 }
+/* show the whole 4:3 cover in wider card frames instead of cropping it */
+.proj-grid .case .cover,.work-grid.all .case:nth-child(-n+4) .cover{background:#0A0F0C}
+.proj-grid .case .cover img,.work-grid.all .case:nth-child(-n+4) .cover img{object-fit:contain;object-position:center}

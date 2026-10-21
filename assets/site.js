@@ -137,11 +137,15 @@
     const end = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), suf = el.dataset.suffix || '', pre = el.dataset.prefix || '';
     const fmt = v => pre + (dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-US')) + suf;
     if (reduce) { el.textContent = fmt(end); return; }
-    const t0 = performance.now(), dur = 1400;
-    (function tick(t) { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 4); el.textContent = fmt(end * e); if (k < 1) requestAnimationFrame(tick); })(t0);
+    const t0 = performance.now(), dur = 1400, run = (el._run = (el._run || 0) + 1);
+    (function tick(t) { if (el._run !== run) return; const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 4); el.textContent = fmt(end * e); if (k < 1) requestAnimationFrame(tick); })(t0);
   }
-  const done = new WeakSet();
-  const cio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !done.has(e.target)) { done.add(e.target); countUp(e.target); } }), { threshold: .6 });
+  // count up every time a number scrolls into view; reset once it has fully left
+  const live = new WeakSet();
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting && !live.has(e.target)) { live.add(e.target); countUp(e.target); }
+    else if (!e.isIntersecting) live.delete(e.target);
+  }), { threshold: .6 });
   document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
 
   /* ---------- reveal on scroll ---------- */
